@@ -52,3 +52,13 @@ Feature1	Feature2	Label
 8	80	1
 9	90	1
 10	100	1
+
+
+# Accuracy Metrics:
+
+Accuracy: 0.6666666666666666
+Recall: 1.0
+Precision: 0.6666666666666666
+Confusion Matrix:
+ [[0 1]
+ [0 2]]
