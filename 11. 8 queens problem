@@ -20,3 +20,5 @@ safe_queens([Q|Qs], Q0, D) :-
 # [queens]. 
 
 Query : n_queens(8, Qs), labeling([ff], Qs).
+true.
+Qs = [1, 5, 8, 6, 3, 7, 2, 4]
