@@ -1,0 +1,24 @@
+% Facts: roads between towns with distances
+road("tampa", "houston", 200).
+road("gordon", "tampa", 300).
+road("houston", "gordon", 100).
+road("houston", "kansas_city", 120).
+road("gordon", "kansas_city", 130).
+
+% Base case: direct road from Town1 to Town2
+route(Town1, Town2, Distance) :-
+    road(Town1, Town2, Distance).
+
+% Recursive case: route via an intermediate Town X
+route(Town1, Town2, Distance) :-
+    road(Town1, X, Dist1),
+    route(X, Town2, Dist2),
+    Distance is Dist1 + Dist2,
+    !.  % cut to prevent backtracking after first route found
+
+# ?- [routes].
+true.
+
+?- route("gordon", "kansas_city", D).
+D = 130 ;
+D = 620.
