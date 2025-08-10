@@ -1,0 +1,22 @@
+:- use_module(library(clpfd)).
+
+queens(N, Qs) :-
+    length(Qs, N),
+    Qs ins 1..N,
+    all_distinct(Qs),
+    safe_queens(Qs).
+
+safe_queens([]).
+safe_queens([Q|Qs]) :-
+    safe_queens(Qs, Q, 1),
+    safe_queens(Qs).
+
+safe_queens([], _, _).
+safe_queens([Q|Qs], Q0, D) :-
+    abs(Q0 - Q) #\= D,
+    D1 #= D + 1,
+    safe_queens(Qs, Q0, D1).
+
+# [queens]. 
+
+Query : n_queens(8, Qs), labeling([ff], Qs).
