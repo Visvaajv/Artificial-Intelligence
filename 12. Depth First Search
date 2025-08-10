@@ -1,0 +1,32 @@
+% graph edges
+s(a, b).
+s(a, c).
+s(b, d).
+s(c, d).
+s(d, e).
+
+% goal nodes
+goal(e).
+
+% DFS code (your existing code)
+solve(Node, Solution) :-
+    depthfirst([], Node, Solution).
+
+depthfirst(Path, Node, [Node | Path]) :-
+    goal(Node).
+
+depthfirst(Path, Node, Solution) :-
+    s(Node, Node1),
+    \+ member(Node1, Path),
+    depthfirst([Node | Path], Node1, Solution).
+
+
+
+# [n_queens].
+n_queens(8, Qs), labeling([ff], Qs).
+
+[dfs].
+solve(a, Path).
+Path = [e, d, b, a] ;
+Path = [e, d, c, a] ;
+false.
