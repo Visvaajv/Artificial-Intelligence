@@ -1,0 +1,54 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+# Importing the dataset
+dataset = pd.read_csv("NaiveBayes.csv")
+
+# Split the data into inputs and outputs
+X = dataset.iloc[:, [0, 1]].values
+y = dataset.iloc[:, 2].values
+
+# Splitting into training and testing sets
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+
+# Scaling the input data
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)  # use transform, not fit_transform
+
+# Importing Gaussian Naive Bayes classifier
+from sklearn.naive_bayes import GaussianNB
+
+# Creating and training the Gaussian Classifier
+classifier1 = GaussianNB()
+classifier1.fit(X_train, y_train)
+
+# Predicting on test set
+y_pred1 = classifier1.predict(X_test)
+
+# Importing accuracy and other metrics
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
+
+# Printing evaluation metrics
+print('Accuracy Metrics:\n')
+print('Accuracy:', accuracy_score(y_test, y_pred1))
+print('Recall:', recall_score(y_test, y_pred1))
+print('Precision:', precision_score(y_test, y_pred1))
+print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred1))
+
+
+Feature1	Feature2	Label
+1	10	0
+2	20	0
+3	30	0
+4	40	1
+5	50	1
+6	60	1
+7	70	1
+8	80	1
+9	90	1
+10	100	1
